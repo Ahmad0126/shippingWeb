@@ -4,6 +4,10 @@
 <script src="<?= base_url('assets/quixlab/') ?>js/gleek.js"></script>
 <script src="<?= base_url('assets/quixlab/') ?>js/styleSwitcher.js"></script>
 
+<script src="<?= base_url('assets/quixlab/') ?>plugins/sweetalert/js/sweetalert.min.js"></script>
+<?php if($this->session->flashdata('alert') != null){
+    echo $this->session->flashdata('alert');
+} ?>
 <!-- Chartjs -->
 <script src="<?= base_url('assets/quixlab/') ?>plugins/chart.js/Chart.bundle.min.js"></script>
 <!-- Circle progress -->
@@ -23,5 +27,3 @@
 <script src="<?= base_url('assets/quixlab/') ?>plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
 
-
-<script src="<?= base_url('assets/quixlab/') ?>js/dashboard/dashboard-1.js"></script>
