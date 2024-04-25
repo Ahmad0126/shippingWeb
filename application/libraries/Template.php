@@ -17,13 +17,26 @@ class Template{
     function buat_notif($judul, $pesan, $warna){
         return '
 		<script>
-            swal({
-                type: "'.$warna.'",
-                title: "'.$judul.'",
-                text: "'.$pesan.'",
-                timer: 5e3
-            });
+            $(document).ready( function () {
+                swal({
+                    type: "'.$warna.'",
+                    title: "'.$judul.'",
+                    text: "'.$pesan.'",
+                    timer: 4e3
+                });
+            } );
 		</script>';
+    }
+
+    function buat_alert($pesan, $warna){
+        return '
+		<div class="alert alert-'.$warna.' alert-dismissible fade show notifikasi" role="alert">
+			<span class="alert-icon"><i class="fa fa-exclamation"></i></span>
+            <span class="alert-text">'.$pesan.'</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+		</div>';
     }
 
     function translate_waktu($waktu, $sekarang){

@@ -8,6 +8,60 @@
 <?php if($this->session->flashdata('alert') != null){
     echo $this->session->flashdata('alert');
 } ?>
+<script>
+    $(".hapus-user").on("click", function () {
+        var loc = "<?= base_url('user/hapus/') ?>"+ $(this).data('id');
+        swal({
+            title: "Are you sure to delete ?",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Hapus",
+            cancelButtonText: "Batal",
+            closeOnConfirm: !1
+        }, function () {
+            window.location.href = loc;
+        })
+    });
+    $(".reset-user").on("click", function () {
+        var id = ""+ $(this).data('id');
+        swal({
+            title: "Are you sure to reset ?",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Reset",
+            cancelButtonText: "Batal",
+            closeOnConfirm: !1
+        }, function (data) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                url: "<?= base_url('user/reset/') ?>",
+                data: {id_user: id},
+                success: function(){
+                }
+            });
+            swal({
+                title: "OK",
+                type: "success",
+                text: "Berhasil mereset password",
+                timer: 2e3
+            });
+        })
+    });
+    $(".edit-user").on("click", function () {
+        var button = $(this);
+
+        $('#id').val(button.data('id'));
+        $('#nama').val(button.data('nama'));
+        $('#level').val(button.data('level'));
+        $('#kota').val(button.data('kota'));
+        $('#telp').val(button.data('telp'));
+
+        $('.modal-edit').modal('show');
+    });
+</script>
 <!-- Chartjs -->
 <script src="<?= base_url('assets/quixlab/') ?>plugins/chart.js/Chart.bundle.min.js"></script>
 <!-- Circle progress -->

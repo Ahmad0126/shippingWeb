@@ -68,17 +68,38 @@ class M_user extends CI_Model{
         [
             'field' => 'nama',
             'label' => 'Nama',
-            'rules' => 'required|min_length[4]|max_length[60]',
+            'rules' => 'required|min_length[2]|max_length[60]',
             'errors' => [
-                'max_length' => '{field}nya kepanjangan!',
+                'max_length' => '{field} maximal 60 karakter!',
                 'required' => 'Tolong kasih {field}!',
-                'min_length' => '{field} minimal 4 huruf!'
+                'min_length' => '{field} minimal 2 huruf!'
+            ]
+        ],
+        [
+            'field' => 'kota',
+            'label' => 'Kota',
+            'rules' => 'required|min_length[2]|max_length[30]',
+            'errors' => [
+                'max_length' => '{field} maximal 30 karakter!',
+                'required' => 'Tolong kasih {field}!',
+                'min_length' => '{field} minimal 2 huruf!'
+            ]
+        ],
+        [
+            'field' => 'telp',
+            'label' => 'No Telp',
+            'rules' => 'required|min_length[2]|max_length[15]|is_numeric',
+            'errors' => [
+                'max_length' => '{field} maximal 15 digit!',
+                'required' => 'Tolong kasih {field}!',
+                'min_length' => '{field} minimal 2 huruf!',
+                'is_numeric' => '{field} harus berisi angka!'
             ]
         ],
         [
             'field' => 'level',
-            'label' => 'Level',
-            'rules' => 'required|in_list[Admin,Kasir]'
+            'label' => 'Domisili',
+            'rules' => 'in_list[Admin,Kasir,Officer,Kurir]'
         ]
     ];
     protected $validation_rules;
@@ -138,7 +159,9 @@ class M_user extends CI_Model{
         if ($validation_user){
             $data = [
                 'nama' => $this->input->post('nama'),
-                'level' => $this->input->post('level')
+                'level' => $this->input->post('level'),
+                'kota' => $this->input->post('kota'),
+                'telp' => $this->input->post('telp')
             ];
             return $this->update_user($data);
         } else { return FALSE; }
