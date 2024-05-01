@@ -50,6 +50,31 @@
             });
         })
     });
+    $(".hapus-cabang").on("click", function () {
+        var loc = "<?= base_url('cabang/hapus/') ?>"+ $(this).data('id');
+        swal({
+            title: "Are you sure to delete ?",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Hapus",
+            cancelButtonText: "Batal",
+            closeOnConfirm: !1
+        }, function () {
+            window.location.href = loc;
+        })
+    });
+    $(".edit-cabang").on("click", function () {
+        var button = $(this);
+
+        $('#id').val(button.data('id'));
+        $('#fasilitas').val(button.data('fasilitas'));
+        $('#kode_pos').val(button.data('kode_pos'));
+        $('#kota').val(button.data('kota'));
+        $('#alamat').val(button.data('alamat'));
+
+        $('.modal-edit').modal('show');
+    });
     $(".edit-user").on("click", function () {
         var button = $(this);
 

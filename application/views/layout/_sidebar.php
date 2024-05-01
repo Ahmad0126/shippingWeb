@@ -14,8 +14,8 @@
             </li>
             <li class="nav-label">Inventaris</li>
             <li>
-                <a href="<?= base_url('linkhere') ?>" aria-expanded="false">
-                    <i class="icon-grid menu-icon"></i><span class="nav-text">Cabang</span>
+                <a href="<?= base_url('cabang') ?>" aria-expanded="false">
+                    <i class="icon-menu menu-icon"></i><span class="nav-text">Cabang</span>
                 </a>
             </li>
             <li>
