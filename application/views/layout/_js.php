@@ -75,6 +75,31 @@
 
         $('.modal-edit').modal('show');
     });
+    $(".hapus-layanan").on("click", function () {
+        var loc = "<?= base_url('layanan/hapus/') ?>"+ $(this).data('id');
+        swal({
+            title: "Are you sure to delete ?",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Hapus",
+            cancelButtonText: "Batal",
+            closeOnConfirm: !1
+        }, function () {
+            window.location.href = loc;
+        })
+    });
+    $(".edit-layanan").on("click", function () {
+        var button = $(this);
+
+        $('#id').val(button.data('id'));
+        $('#nama').val(button.data('nama'));
+        $('#kapasitas').val(button.data('kapasitas'));
+        $('#waktu').val(button.data('waktu'));
+        $('#ongkiir').val(button.data('ongkiir'));
+
+        $('.modal-edit').modal('show');
+    });
     $(".edit-user").on("click", function () {
         var button = $(this);
 
