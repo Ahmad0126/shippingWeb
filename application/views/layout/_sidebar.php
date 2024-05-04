@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?= base_url('linkhere') ?>" aria-expanded="false">
+                <a href="<?= base_url('layanan') ?>" aria-expanded="false">
                     <i class="icon-grid menu-icon"></i><span class="nav-text">Layanan</span>
                 </a>
             </li>

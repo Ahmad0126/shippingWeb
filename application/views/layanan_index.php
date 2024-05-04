@@ -5,38 +5,46 @@
                 <?= $this->session->flashdata('error'); ?>
                 <div class="card-title d-flex justify-content-between">
                     <h4>Daftar Layanan</h4>
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".modal-tambah">Tambah</button>
+                    <span>
+						<button class="btn btn-secondary batal-btn" style="display: none;">Batal</button>
+						<button class="btn btn-success ok-btn" style="display: none;">OK</button>
+						<div class="btn-group">
+							<button class="btn btn-primary" type="button" data-toggle="modal" data-target=".modal-tambah">Tambah</button>
+							<button type="button" class="btn btn-primary tambah-btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+							<div class="dropdown-menu" x-placement="bottom-start">
+								<a class="dropdown-item edit-btn" style="font-size: 0.875rem;" data-obj="layanan">
+                                    <i class="fa fa-pencil text-primary m-r-5"></i>
+									Edit Layanan
+								</a> 
+                                <a class="dropdown-item hapus-btn" style="font-size: 0.875rem;">
+									<i class="fa fa-trash text-danger m-r-5"></i>
+									Hapus Layanan
+								</a> 
+							</div>
+						</div>
+					</span>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
+                            <tr class="head">
+								<th class="pilihan" style="display: none;">Pilih</th>
                                 <th>#</th>
                                 <th>Nama Layanan</th>
                                 <th>Kapasitas</th>
                                 <th>Waktu</th>
                                 <th>Biaya</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php $n=1; foreach($layanan as $l): ?>
                             <tr>
-                                <td><?= $n++ ?></td>
-                                <td><?= $l->nama_layanan ?></td>
-                                <td><?= $l->kapasitas ?> Kg</td>
-                                <td><?= $l->waktu ?> Jam/Km</td>
-                                <td>Rp <?= number_format($l->ongkir) ?> /Km</td>
-                                <td>
-                                    <button class="btn btn-primary edit-layanan" 
-                                    data-id="<?= $l->id_layanan ?>"
-                                    data-nama="<?= $l->nama_layanan ?>"
-                                    data-kapasitas="<?= $l->kapasitas ?>"
-                                    data-waktu="<?= $l->waktu ?>"
-                                    data-ongkir="<?= $l->ongkir ?>"
-                                    >Edit</button>
-                                    <button class="btn btn-danger hapus-layanan" data-id="<?= $l->id_layanan ?>">Hapus</button>
-                                </td>
+                                <td class="pilihan" style="display: none;"><input class="ids" type="checkbox" value="<?= $l->id_layanan ?>"></td>
+								<td><?= $n++ ?></td>
+                                <td class="nama"><?= $l->nama_layanan ?></td>
+                                <td class="kapasitas" data-kapasitas="<?= $l->kapasitas ?>"><?= $l->kapasitas ?> Kg</td>
+                                <td class="waktu" data-waktu="<?= $l->waktu ?>"><?= $l->waktu ?> Jam/Km</td>
+                                <td class="ongkir" data-ongkir="<?= $l->ongkir ?>">Rp <?= number_format($l->ongkir) ?> /Km</td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

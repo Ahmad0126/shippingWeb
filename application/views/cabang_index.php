@@ -5,40 +5,48 @@
                 <?= $this->session->flashdata('error'); ?>
                 <div class="card-title d-flex justify-content-between">
                     <h4>Daftar Cabang</h4>
-                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".modal-tambah">Tambah</button>
+                    <span>
+						<button class="btn btn-secondary batal-btn" style="display: none;">Batal</button>
+						<button class="btn btn-success ok-btn" style="display: none;">OK</button>
+						<div class="btn-group">
+							<button class="btn btn-primary" type="button" data-toggle="modal" data-target=".modal-tambah">Tambah</button>
+							<button type="button" class="btn btn-primary tambah-btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+							<div class="dropdown-menu" x-placement="bottom-start">
+								<a class="dropdown-item edit-btn" style="font-size: 0.875rem;" data-obj="cabang">
+                                    <i class="fa fa-pencil text-primary m-r-5"></i>
+									Edit Cabang
+								</a> 
+                                <a class="dropdown-item hapus-btn" style="font-size: 0.875rem;">
+									<i class="fa fa-trash text-danger m-r-5"></i>
+									Hapus Cabang
+								</a> 
+							</div>
+						</div>
+					</span>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
+                            <tr class="head">
+								<th class="pilihan" style="display: none;">Pilih</th>
                                 <th>#</th>
                                 <th>Kode Cabang</th>
                                 <th>Fasilitas</th>
                                 <th>Kota</th>
                                 <th>Kode Pos</th>
                                 <th>Alamat</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php $n=1; foreach($cabang as $c): ?>
                             <tr>
+                            <td class="pilihan" style="display: none;"><input class="ids" type="checkbox" value="<?= $c->id_cabang ?>"></td>
                                 <td><?= $n++ ?></td>
                                 <td><?= $c->kode_cabang ?></td>
-                                <td><?= $c->fasilitas ?></td>
-                                <td><?= $c->kota ?></td>
-                                <td><?= $c->kode_pos ?></td>
-                                <td><?= $c->alamat ?></td>
-                                <td>
-                                    <button class="btn btn-primary edit-cabang" 
-                                    data-id="<?= $c->id_cabang ?>"
-                                    data-fasilitas="<?= $c->fasilitas ?>"
-                                    data-kota="<?= $c->kota ?>"
-                                    data-kode_pos="<?= $c->kode_pos ?>"
-                                    data-alamat="<?= $c->alamat ?>"
-                                    >Edit</button>
-                                    <button class="btn btn-danger hapus-cabang" data-id="<?= $c->id_cabang ?>">Hapus</button>
-                                </td>
+                                <td class="fasilitas"><?= $c->fasilitas ?></td>
+                                <td class="kota"><?= $c->kota ?></td>
+                                <td class="kode_pos"><?= $c->kode_pos ?></td>
+                                <td class="alamat"><?= $c->alamat ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>

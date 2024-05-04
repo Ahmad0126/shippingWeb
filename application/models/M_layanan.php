@@ -98,10 +98,10 @@ class M_layanan extends CI_Model{
         $validation_layanan = $this->validation();
         if ($validation_layanan){
             $data = [
-                'nama' => $this->input->post('nama'),
-                'level' => $this->input->post('level'),
-                'kota' => $this->input->post('kota'),
-                'telp' => $this->input->post('telp')
+                'nama_layanan' => $this->input->post('nama_layanan'),
+                'kapasitas' => $this->input->post('kapasitas'),
+                'waktu' => $this->input->post('waktu'),
+                'ongkir' => $this->input->post('ongkir')
             ];
             return $this->update_layanan($data);
         } else { return FALSE; }

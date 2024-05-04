@@ -9,125 +9,126 @@
     echo $this->session->flashdata('alert');
 } ?>
 <script>
-    $(".hapus-user").on("click", function () {
-        var loc = "<?= base_url('user/hapus/') ?>"+ $(this).data('id');
-        swal({
-            title: "Are you sure to delete ?",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Hapus",
-            cancelButtonText: "Batal",
-            closeOnConfirm: !1
-        }, function () {
-            window.location.href = loc;
+    var base_url = "<?= base_url() ?>";
+    function cabang_edit_modal(row) {
+        var tr = $(row);
+
+        $('#id').val(tr.find('input.ids').val());
+        $('#fasilitas').val(tr.find('.fasilitas').html());
+        $('#kode_pos').val(tr.find('.kode_pos').html());
+        $('#kota').val(tr.find('.kota').html());
+        $('#alamat').val(tr.find('.alamat').html());
+
+        $('.modal-edit').modal('show');
+    };
+    function layanan_edit_modal(row){
+        var tr = $(row);
+
+        $('#id').val(tr.find('input.ids').val());
+        $('#nama').val(tr.find('.nama').html());
+        $('#kapasitas').val(tr.find('.kapasitas').data('kapasitas'));
+        $('#waktu').val(tr.find('.waktu').data('waktu'));
+        $('#ongkir').val(tr.find('.ongkir').data('ongkir'));
+
+        $('.modal-edit').modal('show');
+    }
+    function user_edit_modal(row){
+        var tr = $(row);
+
+        $('#id').val(tr.find('input.ids').val());
+        $('#nama').val(tr.find('td.nama').html());
+        $('#level').val(tr.find('td.level').html());
+        $('#kota').val(tr.find('td.kota').html());
+        $('#telp').val(tr.find('td.telp').html());
+
+        $('.modal-edit').modal('show');
+    }
+
+    var url = '';
+    var edit = false;
+    obj = $('.edit-btn').data('obj');
+    function hide_btn_menu(){
+        $('.pilihan').css("display", "none");
+        $(".ok-btn").css("display", "none");
+        $(".batal-btn").css("display", "none");
+        $(".tambah-btn").css("display", "inline-block");
+    }
+    function show_btn_menu(){
+        $('.pilihan').css("display", "inline-block");
+        $(".batal-btn").css("display", "inline-block");
+        $(".tambah-btn").css("display", "none");
+    }
+    
+    $('.hapus-btn').on("click", function () {
+        url = '/hapus';
+        edit = false;
+        show_btn_menu();
+    });
+    $('.reset-btn').on("click", function () {
+        url = '/reset';
+        edit = false;
+        show_btn_menu();
+    });
+    $('.edit-btn').on("click", function () {
+        show_btn_menu();
+        edit = true;
+        $('tbody tr').each(function (i, tr) {
+            $(tr).on("click", function () {
+                switch (obj) {
+                    case 'cabang': cabang_edit_modal(tr); break;
+                    case 'layanan': layanan_edit_modal(tr); break;
+                    default: user_edit_modal(tr); break;
+                };
+            })
         })
     });
-    $(".reset-user").on("click", function () {
-        var id = ""+ $(this).data('id');
+    $('.batal-btn').on("click", function () {
+        hide_btn_menu();
+        $('.ids').prop('checked', false);
+        $('tbody tr').off("click");
+    });
+    $('.ids').on('click', function () {
+        if(!edit){
+            $(".ok-btn").css("display", "inline-block");
+        }
+    })
+    $('.ok-btn').on("click", function () {
         swal({
-            title: "Are you sure to reset ?",
+            title: "Apakah Anda Yakin?",
+            text: "ingin melakukan ini?",
             type: "warning",
             showCancelButton: !0,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Reset",
+            confirmButtonText: "Lanjutkan",
             cancelButtonText: "Batal",
-            closeOnConfirm: !1
-        }, function (data) {
+        }, function () {
+            var id = [];
+            $('.ids').each(function(i, e){
+                if($(this).is(':checked')){
+                    id.push($(this).val());
+                }
+            });
             $.ajax({
                 type: 'POST',
                 dataType: 'JSON',
-                url: "<?= base_url('user/reset/') ?>",
+                url: base_url + obj + url,
                 data: {id_user: id},
-                success: function(){
+                success: function(data){
+                    hide_btn_menu();
+                    location.reload();
+                },
+                error: function(){
+                    console.log('GAGAL!');
+                    swal({
+                        title: "GAGAL",
+                        type: "danger",
+                        text: "Terjadi kesalahan pada server",
+                        timer: 2e3
+                    });
                 }
             });
-            swal({
-                title: "OK",
-                type: "success",
-                text: "Berhasil mereset password",
-                timer: 2e3
-            });
-        })
-    });
-    $(".hapus-cabang").on("click", function () {
-        var loc = "<?= base_url('cabang/hapus/') ?>"+ $(this).data('id');
-        swal({
-            title: "Are you sure to delete ?",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Hapus",
-            cancelButtonText: "Batal",
-            closeOnConfirm: !1
-        }, function () {
-            window.location.href = loc;
-        })
-    });
-    $(".edit-cabang").on("click", function () {
-        var button = $(this);
-
-        $('#id').val(button.data('id'));
-        $('#fasilitas').val(button.data('fasilitas'));
-        $('#kode_pos').val(button.data('kode_pos'));
-        $('#kota').val(button.data('kota'));
-        $('#alamat').val(button.data('alamat'));
-
-        $('.modal-edit').modal('show');
-    });
-    $(".hapus-layanan").on("click", function () {
-        var loc = "<?= base_url('layanan/hapus/') ?>"+ $(this).data('id');
-        swal({
-            title: "Are you sure to delete ?",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Hapus",
-            cancelButtonText: "Batal",
-            closeOnConfirm: !1
-        }, function () {
-            window.location.href = loc;
-        })
-    });
-    $(".edit-layanan").on("click", function () {
-        var button = $(this);
-
-        $('#id').val(button.data('id'));
-        $('#nama').val(button.data('nama'));
-        $('#kapasitas').val(button.data('kapasitas'));
-        $('#waktu').val(button.data('waktu'));
-        $('#ongkiir').val(button.data('ongkiir'));
-
-        $('.modal-edit').modal('show');
-    });
-    $(".edit-user").on("click", function () {
-        var button = $(this);
-
-        $('#id').val(button.data('id'));
-        $('#nama').val(button.data('nama'));
-        $('#level').val(button.data('level'));
-        $('#kota').val(button.data('kota'));
-        $('#telp').val(button.data('telp'));
-
-        $('.modal-edit').modal('show');
+        });
     });
 </script>
-<!-- Chartjs -->
-<script src="<?= base_url('assets/quixlab/') ?>plugins/chart.js/Chart.bundle.min.js"></script>
-<!-- Circle progress -->
-<script src="<?= base_url('assets/quixlab/') ?>plugins/circle-progress/circle-progress.min.js"></script>
-<!-- Datamap -->
-<script src="<?= base_url('assets/quixlab/') ?>plugins/d3v3/index.js"></script>
-<script src="<?= base_url('assets/quixlab/') ?>plugins/topojson/topojson.min.js"></script>
-<script src="<?= base_url('assets/quixlab/') ?>plugins/datamaps/datamaps.world.min.js"></script>
-<!-- Morrisjs -->
-<script src="<?= base_url('assets/quixlab/') ?>plugins/raphael/raphael.min.js"></script>
-<script src="<?= base_url('assets/quixlab/') ?>plugins/morris/morris.min.js"></script>
-<!-- Pignose Calender -->
-<script src="<?= base_url('assets/quixlab/') ?>plugins/moment/moment.min.js"></script>
-<script src="<?= base_url('assets/quixlab/') ?>plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-<!-- ChartistJS -->
-<script src="<?= base_url('assets/quixlab/') ?>plugins/chartist/js/chartist.min.js"></script>
-<script src="<?= base_url('assets/quixlab/') ?>plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
 

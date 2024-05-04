@@ -37,13 +37,23 @@ class Cabang extends CI_Controller {
 	public function reset(){
 		$this->M_cabang->reset();
 	}
-	public function hapus($id){
-		if($this->M_cabang->delete($id)){
-			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil menghapus cabang', 'success'));
-			redirect(base_url('cabang'));
-		}else{
-			$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Tidak dapat menambahkan cabang", 'error'));
-			redirect(base_url('cabang'));
+	public function hapus(){
+		foreach ($this->input->post('id_user') as $id) {
+			$this->M_cabang->delete($id);
 		}
+		$msg = [
+			'title' => 'GAGAL',
+			'msg' => 'Tidak dapat menghapus cabang',
+			'type' => 'danger',
+		];
+		if($this->input->post('id_cabang') != null){
+			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil menghapus cabang', 'success'));
+			$msg = [
+				'title' => 'OK',
+				'msg' => 'Berhasil menghapus cabang',
+				'type' => 'success',
+			];
+		}
+		echo json_encode($msg);
 	}
 }
