@@ -34,9 +34,6 @@ class Cabang extends CI_Controller {
 			redirect(base_url('cabang'));
 		}
 	}
-	public function reset(){
-		$this->M_cabang->reset();
-	}
 	public function hapus(){
 		foreach ($this->input->post('id_user') as $id) {
 			$this->M_cabang->delete($id);

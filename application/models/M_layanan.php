@@ -24,7 +24,7 @@ class M_layanan extends CI_Model{
                 'max_length' => '{field} maximal 11 digit!',
                 'required' => 'Tolong kasih {field}!',
                 'min_length' => '{field} minimal 2 huruf!',
-                'integer' => 'Massukkan {field} yang jelas!'
+                'integer' => 'Masukkan {field} yang jelas!'
             ]
         ],
         [
@@ -35,7 +35,7 @@ class M_layanan extends CI_Model{
                 'max_length' => '{field} maximal 11 digit!',
                 'required' => 'Tolong kasih {field}!',
                 'min_length' => '{field} minimal 2 huruf!',
-                'integer' => 'Massukkan {field} yang jelas!'
+                'integer' => 'Masukkan {field} yang jelas!'
             ]
         ],
         [
@@ -46,7 +46,7 @@ class M_layanan extends CI_Model{
                 'max_length' => '{field} maximal 11 digit!',
                 'required' => 'Tolong kasih {field}!',
                 'min_length' => '{field} minimal 2 huruf!',
-                'integer' => 'Massukkan {field} yang jelas!'
+                'integer' => 'Masukkan {field} yang jelas!'
             ]
         ]
     ];
