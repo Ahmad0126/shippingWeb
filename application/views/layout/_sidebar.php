@@ -15,55 +15,22 @@
             <li class="nav-label">Inventaris</li>
             <li>
                 <a href="<?= base_url('cabang') ?>" aria-expanded="false">
-                    <i class="icon-menu menu-icon"></i><span class="nav-text">Cabang</span>
+                    <i class="icon-share menu-icon"></i><span class="nav-text">Cabang</span>
                 </a>
             </li>
             <li>
                 <a href="<?= base_url('layanan') ?>" aria-expanded="false">
-                    <i class="icon-grid menu-icon"></i><span class="nav-text">Layanan</span>
+                    <i class="icon-tag menu-icon"></i><span class="nav-text">Layanan</span>
                 </a>
             </li>
             
-            <li class="nav-label">UI Components</li>
+            <li class="nav-label">Pengiriman</li>
             <li>
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="icon-grid menu-icon"></i><span class="nav-text">UI Components</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="ui-accordion.html">Accordion</a></li>
-                    <li><a href="ui-alert.html">Alert</a></li>
-                    <li><a href="ui-badge.html">Badge</a></li>
-                    <li><a href="ui-button.html">Button</a></li>
-                    <li><a href="ui-button-group.html">Button Group</a></li>
-                    <li><a href="ui-cards.html">Cards</a></li>
-                    <li><a href="ui-carousel.html">Carousel</a></li>
-                    <li><a href="ui-dropdown.html">Dropdown</a></li>
-                    <li><a href="ui-list-group.html">List Group</a></li>
-                    <li><a href="ui-media-object.html">Media Object</a></li>
-                    <li><a href="ui-modal.html">Modal</a></li>
-                    <li><a href="ui-pagination.html">Pagination</a></li>
-                    <li><a href="ui-popover.html">Popover</a></li>
-                    <li><a href="ui-progressbar.html">Progressbar</a></li>
-                    <li><a href="ui-tab.html">Tab</a></li>
-                    <li><a href="ui-typography.html">Typography</a></li>
-                <!-- </ul>
-            </li>
-            <li>
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="icon-layers menu-icon"></i><span class="nav-text">Components</span>
-                </a>
-                <ul aria-expanded="false"> -->
-                    <li><a href="uc-nestedable.html">Nestedable</a></li>
-                    <li><a href="uc-noui-slider.html">Noui Slider</a></li>
-                    <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                    <li><a href="uc-toastr.html">Toastr</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="widgets.html" aria-expanded="false">
-                    <i class="icon-badge menu-icon"></i><span class="nav-text">Widget</span>
+                <a href="<?= base_url('pengiriman') ?>" aria-expanded="false">
+                    <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Pengiriman</span>
                 </a>
             </li>
+            
             <li class="nav-label">Forms</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">

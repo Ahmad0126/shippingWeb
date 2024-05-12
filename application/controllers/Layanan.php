@@ -20,7 +20,7 @@ class Layanan extends CI_Controller {
 			redirect(base_url('layanan'));
 		}else{
 			$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Tidak dapat menambahkan layanan", 'error'));
-			$this->session->set_flashdata('error', $this->template->buat_alert(validation_errors(), 'danger'));
+			$this->session->set_flashdata('error', $this->template->buat_alert(validation_errors().$this->session->flashdata('custom_error'), 'danger'));
 			redirect(base_url('layanan'));
 		}
 	}
@@ -30,7 +30,7 @@ class Layanan extends CI_Controller {
 			redirect(base_url('layanan'));
 		}else{
 			$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Tidak dapat mengedit layanan", 'error'));
-			$this->session->set_flashdata('error', $this->template->buat_alert(validation_errors(), 'danger'));
+			$this->session->set_flashdata('error', $this->template->buat_alert(validation_errors().$this->session->flashdata('custom_error'), 'danger'));
 			redirect(base_url('layanan'));
 		}
 	}

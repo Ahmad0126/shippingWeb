@@ -35,4 +35,16 @@ class Auth extends CI_Controller{
         $this->session->unset_userdata($user);
         redirect(base_url('auth'));
     }
+    public function login_office(){
+        $this->load->model('M_cabang');
+        $cabang = $this->M_cabang->get_cabang_by_kode($this->input->post('kode_cabang'));
+		if($cabang != null){
+			$this->session->set_userdata('kode_cabang', $cabang->kode_cabang);
+			$this->session->set_userdata('data_cabang', $cabang);
+			redirect(base_url());
+		}else{
+			$this->session->set_flashdata('alert', $this->template->buat_alert('Kode Kantor tidak terdaftar!', 'danger'));
+			redirect(base_url());
+		}
+	}
 }

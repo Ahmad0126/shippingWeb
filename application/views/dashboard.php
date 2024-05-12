@@ -54,6 +54,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <div class="row">
+	<div class="col">
+		<div class="card">
+			<div class="card-body">
+				<?= $this->session->flashdata('alert') ?>
+				<div class="d-flex justify-content-between align-items-center">
+					<h4 class="mb-0">Masuk Kantor</h4>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-enter">Masuk</button>
+				</div>
+				<div class="mt-3 d-flex justify-content-between align-items-center">
+					<h5>Kantor saat ini:</h5>
+					<?php if($this->session->userdata('kode_cabang') != null){ $c = $this->session->userdata('data_cabang'); ?>
+					<p><?= $c->fasilitas.' '.$c->kota.' '.$c->kode_pos.' ('.$c->kode_cabang.')' ?></p>
+					<?php }else{ ?>
+					<p>Tidak ada</p>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-lg-12">
 		<div class="row">
 			<div class="col-12">
@@ -97,7 +119,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </div>
 
-
+<div class="modal fade modal-enter" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Masuk ke kantor</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                </button>
+            </div>
+            <form action="<?= base_url('auth/login_office') ?>" method="post">
+                <div class="modal-body">
+                    <div class="basic-form">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Kode Kantor</label>
+                            <div class="col-sm-10">
+                                <input name="kode_cabang" type="text" class="form-control" placeholder="Masukkan Kode Kantor">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Masuk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="row">
 		<div class="col-lg-6 col-md-12">

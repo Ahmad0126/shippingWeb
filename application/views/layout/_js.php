@@ -52,26 +52,36 @@
         $(".ok-btn").css("display", "none");
         $(".batal-btn").css("display", "none");
         $(".tambah-btn").css("display", "inline-block");
+        $(".cck-btn").css("display", "inline-block");
     }
     function show_btn_menu(){
         $('.pilihan').css("display", "inline-block");
         $(".batal-btn").css("display", "inline-block");
         $(".tambah-btn").css("display", "none");
+        $(".cck-btn").css("display", "none");
     }
     
     $('.hapus-btn').on("click", function () {
         url = '/hapus';
         edit = false;
+        $('.ids').prop('checked', false);
         show_btn_menu();
     });
     $('.reset-btn').on("click", function () {
         url = '/reset';
         edit = false;
+        $('.ids').prop('checked', false);
+        show_btn_menu();
+    });
+    $('.cck-btn').on("click", function () {
+        edit = false;
+        $('.ids').prop('checked', false);
         show_btn_menu();
     });
     $('.edit-btn').on("click", function () {
         show_btn_menu();
         edit = true;
+        $('.ids').prop('checked', false);
         $('tbody tr').each(function (i, tr) {
             $(tr).on("click", function () {
                 switch (obj) {
@@ -90,6 +100,7 @@
     $('.ids').on('click', function () {
         if(!edit){
             $(".ok-btn").css("display", "inline-block");
+            $(".checkout-btn").css("display", "inline-block");
         }
     })
     $('.ok-btn').on("click", function () {
@@ -129,6 +140,25 @@
             });
         });
     });
+    
+    $('.checkout-btn').on('click', function () {
+        $('#chot_pngrmn').submit();
+    });
+    $('.select-pembayaran').on('click', function(){
+        if($(this).val() == 'kredit'){
+            $('.div-kredit').css('display', 'block');
+            $('.div-tunai').css('display', 'none');
+        }else{
+            $('.div-kredit').css('display', 'none');
+            $('.div-tunai').css('display', 'block');
+        }
+    });
+    $('.bayar-inp').on('keyup', function(){
+        var total = $('._total').val();
+        var bayar = $(this).val();
+        var kembalian = parseInt(bayar) - parseInt(total);
+        $('.kembalian-text').html('Rp '+kembalian.toLocaleString());
+    })
 </script>
 
 

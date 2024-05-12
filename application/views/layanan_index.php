@@ -43,8 +43,8 @@
 								<td><?= $n++ ?></td>
                                 <td class="nama"><?= $l->nama_layanan ?></td>
                                 <td class="kapasitas" data-kapasitas="<?= $l->kapasitas ?>"><?= $l->kapasitas ?> Kg</td>
-                                <td class="waktu" data-waktu="<?= $l->waktu ?>"><?= $l->waktu ?> Jam/Km</td>
-                                <td class="ongkir" data-ongkir="<?= $l->ongkir ?>">Rp <?= number_format($l->ongkir) ?> /Km</td>
+                                <td class="waktu" data-waktu="<?= $l->waktu ?>"><?= $l->waktu ?> Hari</td>
+                                <td class="ongkir" data-ongkir="<?= $l->ongkir ?>">Rp <?= number_format($l->ongkir) ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -74,19 +74,34 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kapasitas</label>
                             <div class="col-sm-10">
-                                <input name="kapasitas" type="number" class="form-control" placeholder="Masukkan Kapasitas(Kg)">
+                                <div class="input-group">
+                                    <input name="kapasitas" type="number" class="form-control" placeholder="Masukkan Kapasitas">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Kg</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Perkiraan Waktu</label>
                             <div class="col-sm-10">
-                                <input name="waktu" type="number" class="form-control" placeholder="Masukkan Waktu(jam/Km)">
+                                <div class="input-group">
+                                    <input name="waktu" type="text" class="form-control" placeholder="3-5">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Hari</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Biaya</label>
                             <div class="col-sm-10">
-                                <input name="ongkir" type="number" class="form-control" placeholder="Masukkan Biaya(Rp/Km)">
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">Rp</div>
+                                    </div>
+                                    <input name="ongkir" type="number" class="form-control" placeholder="Masukkan Biaya">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,19 +135,34 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Kapasitas</label>
                             <div class="col-sm-10">
-                                <input name="kapasitas" id="kapasitas" type="number" class="form-control" placeholder="Masukkan Kapasitas(Kg)">
+                                <div class="input-group">
+                                    <input name="kapasitas" id="kapasitas" type="number" class="form-control" placeholder="Masukkan Kapasitas">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Kg</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Perkiraan Waktu</label>
                             <div class="col-sm-10">
-                                <input name="waktu" id="waktu" type="number" class="form-control" placeholder="Masukkan Waktu(jam/Km)">
+                                <div class="input-group">
+                                    <input name="waktu" id="waktu" type="text" class="form-control" placeholder="3-5">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Hari</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Biaya</label>
                             <div class="col-sm-10">
-                                <input name="ongkir" id="ongkir" type="number" class="form-control" placeholder="Masukkan Biaya(Rp/Km)">
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">Rp</div>
+                                    </div>
+                                    <input name="ongkir" id="ongkir" type="number" class="form-control" placeholder="Masukkan Biaya">
+                                </div>
                             </div>
                         </div>
                     </div>

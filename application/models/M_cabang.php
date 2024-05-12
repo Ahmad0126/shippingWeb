@@ -77,8 +77,8 @@ class M_cabang extends CI_Model{
         $this->db->order_by('id_cabang', 'DESC');
         return $this->db->get($this->_table)->result();
     }
-    public function get_cabang_by_id($id){
-        return $this->db->get_where($this->_table, array('id_cabang' => $id))->row();
+    public function get_cabang_by_kode($kode){
+        return $this->db->get_where($this->_table, array('kode_cabang' => $kode))->row();
     }
 
     //Delete

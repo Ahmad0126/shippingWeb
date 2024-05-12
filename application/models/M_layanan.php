@@ -23,19 +23,16 @@ class M_layanan extends CI_Model{
             'errors' => [
                 'max_length' => '{field} maximal 11 digit!',
                 'required' => 'Tolong kasih {field}!',
-                'min_length' => '{field} minimal 2 huruf!',
                 'integer' => 'Masukkan {field} yang jelas!'
             ]
         ],
         [
             'field' => 'waktu',
             'label' => 'Waktu',
-            'rules' => 'required|max_length[11]|integer',
+            'rules' => 'required|max_length[11]',
             'errors' => [
-                'max_length' => '{field} maximal 11 digit!',
-                'required' => 'Tolong kasih {field}!',
-                'min_length' => '{field} minimal 2 huruf!',
-                'integer' => 'Masukkan {field} yang jelas!'
+                'max_length' => '{field} maximal 11 karakter!',
+                'required' => 'Tolong kasih {field}!'
             ]
         ],
         [
@@ -45,7 +42,6 @@ class M_layanan extends CI_Model{
             'errors' => [
                 'max_length' => '{field} maximal 11 digit!',
                 'required' => 'Tolong kasih {field}!',
-                'min_length' => '{field} minimal 2 huruf!',
                 'integer' => 'Masukkan {field} yang jelas!'
             ]
         ]
@@ -54,7 +50,11 @@ class M_layanan extends CI_Model{
     //validation form
     private function validation(){
         $this->form_validation->set_rules($this->validation_rules);
-        if ($this->form_validation->run() == TRUE){
+        $waktu = explode('-', $this->input->post('waktu'));
+        if(!is_numeric($waktu[1]) || $waktu[0] >= $waktu[1]){
+            $this->session->set_flashdata('custom_error', 'Perkiraan Waktu harus valid misal: 1-2 hari');
+        }
+        if ($this->form_validation->run() == TRUE && is_numeric($waktu[1]) && $waktu[0] < $waktu[1]){
             return TRUE;
         }
         return FALSE;
@@ -66,7 +66,7 @@ class M_layanan extends CI_Model{
         return $this->db->get($this->_table)->result();
     }
     public function get_layanan_by_id($id){
-        return $this->db->get_where($this->_table, array('layanan_id' => $id))->row();
+        return $this->db->get_where($this->_table, array('id_layanan' => $id))->row();
     }
 
     //Delete

@@ -63,7 +63,7 @@
                                     <div class="input-group">
                                         <input name="berat" type="number" class="form-control" placeholder="Berat Barang">
                                         <div class="input-group-append">
-                                            <span class="input-group-text">Kg</span>
+                                            <span class="input-group-text">gram</span>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
 					</div>
 					<div class="form-group">
 						<div class="form-check">
-							<input id="process" name="process" class="form-check-input" type="checkbox">
+							<input id="process" name="process" value="true" class="form-check-input" type="checkbox">
 							<label for="process" class="form-check-label">Langsung Proses</label>
 						</div>
 					</div>

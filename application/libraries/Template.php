@@ -2,6 +2,10 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Template{
+    function __construct(){
+        date_default_timezone_set('Asia/Jakarta');
+    }
+
     var $template_data = array();
     function set($name, $value){
         $this->template_data[$name] = $value;
