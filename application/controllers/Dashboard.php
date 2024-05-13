@@ -11,4 +11,7 @@ class Dashboard extends CI_Controller {
 	public function index(){
 		$this->template->load('layout/template', 'dashboard', 'Dashboard');
 	}
+	public function pickup(){
+		$this->template->load('layout/template', 'bagasi_index', 'Pickup Barang');
+	}
 }

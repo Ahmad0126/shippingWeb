@@ -165,7 +165,6 @@ class M_pengiriman extends CI_Model{
             status,
             alamat_tujuan,
             pengiriman.kode_pos,
-            cabang.kode_pos as k_pos,
             pengiriman.ongkir,
             pengiriman.no_nota,
             tanggal_dikirim,
@@ -185,7 +184,6 @@ class M_pengiriman extends CI_Model{
         $this->db->join($this->t2, $this->t2.'.kode_pengiriman = h.kode_pengiriman', 'inner');
         $this->db->join($this->t3, $this->t3.'.id_layanan = '.$this->t1.'.id_layanan', 'inner');
         $this->db->join($this->t4, $this->t4.'.no_nota = '.$this->t1.'.no_nota', 'left');
-        $this->db->join($this->t6, $this->t6.'.kode_cabang = h.kode_cabang', 'inner');
         $this->db->join('(SELECT kode_pengiriman, MAX(tanggal) AS maxTgl FROM '.$this->t5.' GROUP BY kode_pengiriman) hts', 'h.kode_pengiriman = hts.kode_pengiriman AND h.tanggal = hts.maxTgl', 'inner');
         $this->db->where($this->t1.'.kode_pengiriman', $kode);
         return $this->db->get($this->t5.' h')->row();
@@ -207,7 +205,7 @@ class M_pengiriman extends CI_Model{
         return $this->db->get_where($this->t1, array($this->t1.'.no_nota' => $nota))->result();
     }
     public function get_histori_pengiriman($kode){
-        $this->db->join($this->t6, $this->t6.'.kode_cabang = '.$this->t5.'.kode_cabang');
+        $this->db->join($this->t6, $this->t6.'.kode_cabang = '.$this->t5.'.kode_cabang', 'left');
         $this->db->where('kode_pengiriman', $kode);
         return $this->db->get($this->t5)->result();
     }
