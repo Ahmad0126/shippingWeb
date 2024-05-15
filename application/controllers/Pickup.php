@@ -11,7 +11,9 @@ class Pickup extends CI_Controller {
 		$this->load->model('M_histori');
 	}
 	public function index(){
-		$this->template->load('layout/template', 'bagasi_index', 'Pickup Barang');
+		$this->load->model('M_pengiriman');
+		$data['barang'] = $this->M_pengiriman->get_pengiriman_inventory($this->session->userdata('id'), 'delivery');
+		$this->template->load('layout/template', 'bagasi_index', 'Pickup Barang', $data);
 	}
 	public function pick_barang(){
 		if($this->M_histori->pickup()){
@@ -22,40 +24,20 @@ class Pickup extends CI_Controller {
 			redirect(base_url('pickup'));
 		}
 	}
-	public function tambah(){
-		if($this->M_cabang->simpan()){
-			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil menambahkan cabang', 'success'));
-			redirect(base_url('cabang'));
-		}else{
-			$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Tidak dapat menambahkan cabang", 'error'));
-			$this->session->set_flashdata('error', $this->template->buat_alert(validation_errors(), 'danger'));
-			redirect(base_url('cabang'));
-		}
-	}
-	public function edit(){
-		if($this->M_cabang->edit()){
-			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil mengedit cabang', 'success'));
-			redirect(base_url('cabang'));
-		}else{
-			$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Tidak dapat menambahkan cabang", 'error'));
-			$this->session->set_flashdata('error', $this->template->buat_alert(validation_errors(), 'danger'));
-			redirect(base_url('cabang'));
-		}
-	}
 	public function hapus(){
-		foreach ($this->input->post('id_user') as $id) {
-			$this->M_cabang->delete($id);
+		foreach ($this->input->post('id_user') as $kode) {
+			$this->M_histori->delete($kode, 'delivery');
 		}
 		$msg = [
 			'title' => 'GAGAL',
-			'msg' => 'Tidak dapat menghapus cabang',
+			'msg' => 'Tidak dapat membatalkan pickup',
 			'type' => 'danger',
 		];
-		if($this->input->post('id_cabang') != null){
-			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil menghapus cabang', 'success'));
+		if($this->input->post('id_user') != null){
+			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil membatalkan pickup', 'success'));
 			$msg = [
 				'title' => 'OK',
-				'msg' => 'Berhasil menghapus cabang',
+				'msg' => 'Berhasil membatalkan pickup',
 				'type' => 'success',
 			];
 		}

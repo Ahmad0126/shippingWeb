@@ -204,6 +204,21 @@ class M_pengiriman extends CI_Model{
         $this->db->join('(SELECT kode_pengiriman, MAX(tanggal) AS maxTgl FROM '.$this->t5.' GROUP BY kode_pengiriman) hts', 'h.kode_pengiriman = hts.kode_pengiriman AND h.tanggal = hts.maxTgl', 'inner');
         return $this->db->get_where($this->t1, array($this->t1.'.no_nota' => $nota))->result();
     }
+    public function get_pengiriman_inventory($id_user, $status){
+        $this->db->select(
+            $this->t1.'.kode_pengiriman, '.
+            $this->t2.'.nama_penerima, '.
+            $this->t1.'.alamat_tujuan, '.
+            $this->t2.'.deskripsi'
+        );
+        $this->db->join($this->t1, $this->t1.'.kode_pengiriman = h.kode_pengiriman', 'inner');
+        $this->db->join($this->t2, $this->t2.'.kode_pengiriman = h.kode_pengiriman', 'inner');
+        $this->db->join('(SELECT kode_pengiriman, MAX(tanggal) AS maxTgl FROM '.$this->t5.' GROUP BY kode_pengiriman) hts', 'h.kode_pengiriman = hts.kode_pengiriman AND h.tanggal = hts.maxTgl', 'inner');
+        $this->db->where('id_user', $id_user);
+        $this->db->where('status', $status);
+        $this->db->order_by($this->t1.'.id_pengiriman', 'DESC');
+        return $this->db->get($this->t5.' h')->result();
+    }
     public function get_histori_pengiriman($kode){
         $this->db->join($this->t6, $this->t6.'.kode_cabang = '.$this->t5.'.kode_cabang', 'left');
         $this->db->where('kode_pengiriman', $kode);

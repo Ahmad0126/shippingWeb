@@ -25,8 +25,8 @@ class M_histori extends CI_Model{
     }
 
     //Delete
-    public function delete($id){
-        $this->db->delete($this->_table, array('id_layanan' => $id));
+    public function delete($kode, $status){
+        $this->db->delete($this->_table, array('kode_pengiriman' => $kode, 'status' => $status));
         return TRUE;
     }
 

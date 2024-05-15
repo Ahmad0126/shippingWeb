@@ -23,10 +23,10 @@
 				<div class="card-title d-flex justify-content-between">
 					<h4>Bagasi</h4>
 					<span>
+						<input type="hidden" data-obj="pickup" class="edit-btn">
 						<button class="btn btn-secondary batal-btn" style="display: none;">Batal</button>
-						<button class="btn btn-success checkout-btn" style="display: none;">Checkout</button>
-						<button class="btn btn-success cck-btn">Checkout</button>
-						<a class="btn btn-primary tambah-btn" href="<?= base_url('pengiriman/daftar') ?>">Pendaftaran</a>
+						<button class="btn btn-success ok-btn" style="display: none;">OK</button>
+						<button class="btn btn-warning hapus-btn">Batalkan</button>
 					</span>
 				</div>
 				<div class="table-responsive">
@@ -38,12 +38,22 @@
 								<th>Kode Pengiriman</th>
 								<th>Deskripsi Barang</th>
 								<th>Nama Penerima</th>
-								<th>Kota Tujuan</th>
+								<th>Alamat Tujuan</th>
 								<th>Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
-							
+							<?php $n=1; foreach($barang as $b){ ?>
+								<tr>
+									<td class="pilihan" style="display: none;"><input class="ids" type="checkbox" value="<?= $b->kode_pengiriman ?>"></td>
+									<td><?= $n++ ?></td>
+									<td><?= $b->kode_pengiriman ?></td>
+									<td><?= $b->deskripsi ?></td>
+									<td><?= $b->nama_penerima ?></td>
+									<td><?= $b->alamat_tujuan ?></td>
+									<td></td>
+								</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
