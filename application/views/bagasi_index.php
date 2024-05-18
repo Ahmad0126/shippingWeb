@@ -3,15 +3,38 @@
 		<div class="card">
 			<div class="card-body">
 				<?= $this->session->flashdata('error') ?>
-				<h4 class="card-title mb-3">Pickup Barang</h4>
-				<form action="<?= base_url('pickup/pick_barang') ?>" method="post">
-					<div class="input-group">
-						<input type="text" name="kode" class="form-control" placeholder="Masukkan Kode">
-						<div class="input-group-append">
-							<button class="btn btn-primary">Ambil</button>
+				<div class="default-tab">
+					<ul class="nav nav-tabs mb-3" role="tablist">
+						<li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#pickup">Pickup</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#deliver">Deliver</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade active show" id="pickup" role="tabpanel">
+							<h4 class="card-title mb-3">Pickup Barang</h4>
+							<form action="<?= base_url('pickup/pick_barang') ?>" method="post">
+								<div class="input-group">
+									<input type="text" name="kode" class="form-control" placeholder="Masukkan Kode">
+									<div class="input-group-append">
+										<button class="btn btn-primary">Ambil</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane fade" id="deliver">
+							<h4 class="card-title mb-3">Antarkan Barang</h4>
+							<form id="dlv-form" action="<?= base_url('pickup/deliver') ?>" method="post">
+								<div class="input-group">
+									<input type="text" id="kode_pengiriman" name="kode" class="form-control" placeholder="Masukkan Kode">
+									<div class="input-group-append">
+										<button class="btn btn-primary">Antarkan</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -26,6 +49,8 @@
 						<input type="hidden" data-obj="pickup" class="edit-btn">
 						<button class="btn btn-secondary batal-btn" style="display: none;">Batal</button>
 						<button class="btn btn-success ok-btn" style="display: none;">OK</button>
+						<button class="btn btn-success ok-dlv-btn" style="display: none;">OK</button>
+						<button class="btn btn-primary dlv-btn">Antarkan</button>
 						<button class="btn btn-warning hapus-btn">Batalkan</button>
 					</span>
 				</div>

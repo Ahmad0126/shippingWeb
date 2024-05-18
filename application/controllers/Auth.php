@@ -5,6 +5,9 @@ class Auth extends CI_Controller{
     public function index(){
         $this->load->view('login');
     }
+    public function masukkantor(){
+        $this->load->view('login_office');
+    }
     public function login(){
         $this->load->model('M_user');
         $user = $this->input->post('username');
@@ -44,7 +47,7 @@ class Auth extends CI_Controller{
 			redirect(base_url());
 		}else{
 			$this->session->set_flashdata('alert', $this->template->buat_alert('Kode Kantor tidak terdaftar!', 'danger'));
-			redirect(base_url());
+			redirect(base_url('auth/masukkantor'));
 		}
 	}
 }

@@ -31,17 +31,27 @@ class M_histori extends CI_Model{
     }
 
     //Insert
-    public function pickup(){
-        if ($this->validation()){
-            $data = [
-                'kode_pengiriman' => $this->input->post('kode'),
-                'tanggal' => date('Y-m-d H:i:s'),
-                'deskripsi' => 'Dibawa oleh kurir',
-                'status' => 'delivery',
-                'id_user' => $this->session->userdata('id')
-            ];
-            return $this->insert_histori($data);
-        } else { return FALSE; }
+    public function buat($msg, $status, $dlv = null){
+        $data = [
+            'kode_pengiriman' => $dlv != null ? $dlv : $this->input->post('kode'),
+            'tanggal' => date('Y-m-d H:i:s'),
+            'deskripsi' => $msg,
+            'status' => $status,
+            'id_user' => $this->session->userdata('id'),
+            'kode_cabang' => $this->session->userdata('kode_cabang')
+        ];
+        return $this->insert_histori($data);
+    }
+    public function forward($msg, $dlv, $cabang){
+        $data = [
+            'kode_pengiriman' => $dlv,
+            'tanggal' => date('Y-m-d H:i:s'),
+            'deskripsi' => $msg,
+            'status' => 'forwarded',
+            'id_user' => $this->session->userdata('id'),
+            'kode_cabang' => $cabang
+        ];
+        return $this->insert_histori($data);
     }
     private function insert_histori($data){
         $this->db->insert($this->_table, $data);

@@ -30,6 +30,26 @@
                     <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Pengiriman</span>
                 </a>
             </li>
+            <li>
+                <a href="<?= base_url('pickup') ?>" aria-expanded="false">
+                    <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Pickup</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?= base_url('sorting') ?>" aria-expanded="false">
+                    <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Sorting</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?= base_url('gateway') ?>" aria-expanded="false">
+                    <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Gateway</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?= base_url('warehouse') ?>" aria-expanded="false">
+                    <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Warehouse</span>
+                </a>
+            </li>
             
             <li class="nav-label">Forms</li>
             <li>

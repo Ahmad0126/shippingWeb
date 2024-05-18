@@ -12,17 +12,32 @@ class Pickup extends CI_Controller {
 	}
 	public function index(){
 		$this->load->model('M_pengiriman');
-		$data['barang'] = $this->M_pengiriman->get_pengiriman_inventory($this->session->userdata('id'), 'delivery');
+		$data['barang'] = $this->M_pengiriman->get_pengiriman_inventory('delivery', true);
 		$this->template->load('layout/template', 'bagasi_index', 'Pickup Barang', $data);
 	}
 	public function pick_barang(){
-		if($this->M_histori->pickup()){
+		if($this->M_histori->buat('Dibawa oleh kurir', 'delivery')){
 			$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil mengambil barang', 'success'));
 			redirect(base_url('pickup'));
 		}else{
 			$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Tidak dapat mengambil barang", 'error'));
 			redirect(base_url('pickup'));
 		}
+	}
+	public function deliver(){
+		$kode = explode(',', $this->input->post('kode'));
+		$this->load->model('M_pengiriman');
+		$barang = $this->M_pengiriman->get_pengiriman_inventory('delivery', true);
+		foreach ($kode as $k) {
+			$cek = in_array($k, array_column($barang, 'kode_pengiriman'));
+			if(!$cek){
+				$this->session->set_flashdata('alert', $this->template->buat_notif('GAGAL', "Barang tidak ada di bagasi", 'error'));
+				redirect(base_url('pickup'));
+			}
+			$this->M_histori->buat('Diantar ke penerima', 'delivered', $k);
+		}
+		$this->session->set_flashdata('alert', $this->template->buat_notif('OK', 'Berhasil mengantar barang', 'success'));
+		redirect(base_url('pickup'));
 	}
 	public function hapus(){
 		foreach ($this->input->post('id_user') as $kode) {

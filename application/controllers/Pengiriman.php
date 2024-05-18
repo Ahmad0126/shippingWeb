@@ -8,8 +8,8 @@ class Pengiriman extends CI_Controller {
 			$this->session->set_flashdata('username', $this->template->buat_alert('Silahkan Login Dahulu', 'warning'));
 			redirect(base_url('auth'));
 		}
-		if($this->session->userdata('kode_cabang') == null){
-			$this->session->set_flashdata('alert', $this->template->buat_alert('Masuk kantor terlebih dahulu!', 'danger'));
+		if($this->session->userdata('data_cabang')->fasilitas != 'Office'){
+			$this->session->set_flashdata('alert', $this->template->buat_alert('Masuk kantor office terlrbih dahulu!', 'danger'));
 			redirect(base_url());
 		}
 		$this->load->model('M_pengiriman');

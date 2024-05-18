@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?= $this->session->flashdata('alert') ?>
 				<div class="d-flex justify-content-between align-items-center">
 					<h4 class="mb-0">Masuk Kantor</h4>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-enter">Masuk</button>
+					<a href="<?= base_url('auth/masukkantor') ?>" class="btn btn-primary">Masuk</a>
 				</div>
 				<div class="mt-3 d-flex justify-content-between align-items-center">
 					<h5>Kantor saat ini:</h5>
@@ -117,34 +117,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="modal fade modal-enter" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Masuk ke kantor</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span>
-                </button>
-            </div>
-            <form action="<?= base_url('auth/login_office') ?>" method="post">
-                <div class="modal-body">
-                    <div class="basic-form">
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kode Kantor</label>
-                            <div class="col-sm-10">
-                                <input name="kode_cabang" type="text" class="form-control" placeholder="Masukkan Kode Kantor">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Masuk</button>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 
 <div class="row">
