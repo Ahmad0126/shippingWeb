@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Sorting extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		if($this->session->userdata('level') == null){
+		if($this->session->userdata('level') != 'Admin' && $this->session->userdata('level') != 'Officer'){ 
 			$this->session->set_flashdata('username', $this->template->buat_alert('Silahkan Login Dahulu', 'warning'));
 			redirect(base_url('auth'));
 		}

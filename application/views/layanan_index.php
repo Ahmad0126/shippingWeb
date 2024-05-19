@@ -5,6 +5,7 @@
                 <?= $this->session->flashdata('error'); ?>
                 <div class="card-title d-flex justify-content-between">
                     <h4>Daftar Layanan</h4>
+                    <?php if($this->session->userdata('level') == 'Admin'){ ?>
                     <span>
 						<button class="btn btn-secondary batal-btn" style="display: none;">Batal</button>
 						<button class="btn btn-success ok-btn" style="display: none;">OK</button>
@@ -23,6 +24,7 @@
 							</div>
 						</div>
 					</span>
+                    <?php } ?>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">

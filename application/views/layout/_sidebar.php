@@ -7,12 +7,14 @@
                     <i class="icon-home menu-icon"></i><span class="nav-text">Home</span>
                 </a>
             </li>
+            <?php $l = $this->session->userdata('level'); if( $l == 'Admin'){ ?>
             <li>
                 <a href="<?= base_url('user') ?>" aria-expanded="false">
                     <i class="icon-user menu-icon"></i><span class="nav-text">User</span>
                 </a>
             </li>
             <li class="nav-label">Inventaris</li>
+            <?php } ?>
             <li>
                 <a href="<?= base_url('cabang') ?>" aria-expanded="false">
                     <i class="icon-share menu-icon"></i><span class="nav-text">Cabang</span>
@@ -24,18 +26,25 @@
                 </a>
             </li>
             
+            <?php if($l == 'Kasir' || $l == 'Kurir' || $l == 'Admin'){ ?>
             <li class="nav-label">Pengiriman</li>
+            <?php } ?>
+            <?php if($l == 'Kasir' || $l == 'Admin'){ ?>
             <li>
                 <a href="<?= base_url('pengiriman') ?>" aria-expanded="false">
                     <i class="icon-paper-plane menu-icon"></i><span class="nav-text">Pengiriman</span>
                 </a>
             </li>
+            <?php } ?>
+            <?php if($l == 'Kurir' || $l == 'Admin'){ ?>
             <li>
                 <a href="<?= base_url('pickup') ?>" aria-expanded="false">
                     <i class="icon-basket menu-icon"></i><span class="nav-text">Pickup</span>
                 </a>
             </li>
+            <?php } ?>
 
+            <?php if($l == 'Officer' || $l == 'Admin'){ ?>
             <li class="nav-label">Kantor</li>
             <li>
                 <a href="<?= base_url('sorting') ?>" aria-expanded="false">
@@ -52,6 +61,7 @@
                     <i class="icon-layers menu-icon"></i><span class="nav-text">Warehouse</span>
                 </a>
             </li>
+            <?php } ?>
         </ul>
     </div>
 </div>
