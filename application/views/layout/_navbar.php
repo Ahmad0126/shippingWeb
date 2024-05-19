@@ -32,11 +32,11 @@
         </div>
         <div class="header-right">
             <ul class="clearfix">
-                <li class="icons dropdown d-none d-md-flex">
-                    <p>NamaMu</p>
+                <li class="icons dropdown c-pointer d-none d-md-flex" data-toggle="dropdown">
+                    <p><?= $this->session->userdata('nama') ?></p>
                 </li>
                 <li class="icons dropdown">
-                    <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                    <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                         <span class="activity active"></span>
                         <img src="<?= base_url('assets/quixlab/') ?>images/user/1.png" height="40" width="40" alt="">
                     </div>
@@ -44,7 +44,7 @@
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                    <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                    <a href="<?= base_url('auth/masukkantor') ?>"><i class="icon-user"></i> <span>Masuk Kantor</span></a>
                                 </li>
                                 <hr class="my-2">
                                 <li><a href="<?= base_url('auth/logout') ?>"><i class="icon-key"></i> <span>Logout</span></a></li>

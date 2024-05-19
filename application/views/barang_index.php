@@ -116,7 +116,6 @@
 								<th>Deskripsi Barang</th>
 								<th>Nama Penerima</th>
 								<th>Alamat Tujuan</th>
-								<th>Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -128,7 +127,6 @@
 									<td><?= $b->deskripsi ?></td>
 									<td><?= $b->nama_penerima ?></td>
 									<td><?= $b->alamat_tujuan ?></td>
-									<td></td>
 								</tr>
 							<?php } ?>
 						</tbody>
